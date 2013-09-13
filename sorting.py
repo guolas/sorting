@@ -34,12 +34,12 @@ class MergeSort:
       length_first = len(unsorted_list)/2
       length_second = len(unsorted_list) - length_first
       if length_first <= cut_off:
-        first_half = unsorted_list[:length_first]
+        first_half = list(unsorted_list[:length_first])
         self.insertion_sort_list(first_half)
       else:
         first_half = self.sort_list(unsorted_list[:length_first])
       if length_second <= cut_off:
-        second_half = unsorted_list[length_first:]
+        second_half = list(unsorted_list[length_first:])
         self.insertion_sort_list(second_half)
       else:
         second_half = self.sort_list(unsorted_list[length_first:])
@@ -48,8 +48,8 @@ class MergeSort:
 
 class InsertionSort:
   def sort_list(self, unsorted_list):
-    for k in range(len(unsorted_list)):
-      for j in range(k, 0, -1):
+    for k in xrange(len(unsorted_list)):
+      for j in xrange(k, 0, -1):
         if unsorted_list[j] < unsorted_list[j - 1]:
           swap = unsorted_list[j]
           unsorted_list[j] = unsorted_list[j - 1]
@@ -60,9 +60,9 @@ class InsertionSort:
 class SelectionSort:
   def sort_list(self, unsorted_list):
     total_length = len(unsorted_list)
-    for k in range(total_length):
+    for k in xrange(total_length):
       idx_min = k
-      for j in range(k, total_length):
+      for j in xrange(k, total_length):
         if unsorted_list[j] < unsorted_list[idx_min]:
           idx_min = j
       swap = unsorted_list[k]
@@ -76,8 +76,8 @@ class ShellSort:
     while stride < total_length / 3:
      stride = 3 * stride + 1
     while stride >= 1:
-      for i in range(stride, total_length):
-        for j in range(i, stride - 1, -stride):
+      for i in xrange(stride, total_length):
+        for j in xrange(i, stride - 1, -stride):
           if unsorted_list[j] >= unsorted_list[j - stride] or j < stride:
             break
           else:
