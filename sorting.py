@@ -34,11 +34,13 @@ class MergeSort:
       length_first = len(unsorted_list)/2
       length_second = len(unsorted_list) - length_first
       if length_first <= cut_off:
-        first_half = self.insertion_sort_list(unsorted_list[:length_first])
+        first_half = unsorted_list[:length_first]
+        self.insertion_sort_list(first_half)
       else:
         first_half = self.sort_list(unsorted_list[:length_first])
       if length_second <= cut_off:
-        second_half = self.insertion_sort_list(unsorted_list[length_first:])
+        second_half = unsorted_list[length_first:]
+        self.insertion_sort_list(second_half)
       else:
         second_half = self.sort_list(unsorted_list[length_first:])
       sorted_list = self.merge(first_half, second_half)
