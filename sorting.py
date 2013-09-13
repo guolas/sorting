@@ -54,5 +54,34 @@ class InsertionSort:
           unsorted_list[j - 1] = swap
         else:
           break
-    return unsorted_list
- 
+
+class SelectionSort:
+  def sort_list(self, unsorted_list):
+    total_length = len(unsorted_list)
+    for k in range(total_length):
+      idx_min = k
+      for j in range(k, total_length):
+        if unsorted_list[j] < unsorted_list[idx_min]:
+          idx_min = j
+      swap = unsorted_list[k]
+      unsorted_list[k] = unsorted_list[idx_min]
+      unsorted_list[idx_min] = swap
+
+class ShellSort:
+  def sort_list(self, unsorted_list):
+    total_length = len(unsorted_list)
+    stride = 1
+    while stride < total_length / 3:
+     stride = 3 * stride + 1
+    while stride >= 1:
+      for i in range(stride, total_length):
+        for j in range(i, stride - 1, -stride):
+          if unsorted_list[j] >= unsorted_list[j - stride] or j < stride:
+            break
+          else:
+            swap = unsorted_list[j]
+            unsorted_list[j] = unsorted_list[j - stride]
+            unsorted_list[j - stride] = swap
+        if i >= total_length:
+          break
+      stride = stride / 3
